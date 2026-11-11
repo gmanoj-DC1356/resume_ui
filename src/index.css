@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Global brand colors — change them here only; the theme tokens below derive from them. */
+:root {
+  --primary-color: #7c1bdb;
+  --secondary-color: #af3c84;
+  --tertiary-color: #e6536a;
+}
+
+@theme inline {
+  --color-brand-primary: var(--primary-color);
+  --color-brand-primary-soft: color-mix(in srgb, var(--primary-color) 10%, white);
+  --color-brand-secondary: var(--secondary-color);
+  --color-brand-secondary-soft: color-mix(in srgb, var(--secondary-color) 12%, white);
+  --color-brand-tertiary: var(--tertiary-color);
+  --color-brand-tertiary-soft: color-mix(in srgb, var(--tertiary-color) 12%, white);
+}
+
+@theme {
+  --color-brand-accent: #f2a541;
+  --color-brand-bg: #f4f6fa;
+  --color-brand-surface: #ffffff;
+  --color-brand-text: #1b2433;
+  --color-brand-muted: #5e6b80;
+  --color-brand-line: #dde3ed;
+  --color-brand-good: #1e9e5a;
+  --color-brand-warn: #c77d0a;
+  --color-brand-bad: #c23b3b;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-brand-bg text-brand-text antialiased;
+}

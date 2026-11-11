@@ -1,0 +1,80 @@
+Resume Screening - phase 1 modules
+
+1. JWT Authentication & User Management	- Srikanth
+
+This module will be the entry point to the application. Users should be able to sign in using JWT-based authentication, access the application securely, and log out when required. It will also be responsible for managing user sessions, user profile information, and controlling access to application features based on authentication status.
+
+List of action items (UI, backend and integration):
+- UI: login page with form validation and safe error messages.
+- UI: logout action and session-expiry handling.
+- UI: user profile view.
+- UI: protected routes that deny access to unauthenticated users.
+- Backend: login API that validates credentials and issues JWT access and refresh tokens.
+- Backend: token refresh and logout/token revocation APIs.
+- Backend: user management APIs (create, update, profile retrieval) and role-based access control.
+- Backend: secure password storage (Argon2id or bcrypt).
+- Integration: Axios interceptor to attach the access token and handle 401 responses with token refresh.
+- Integration: session and token storage approach agreed with the backend (avoid insecure browser storage).
+- Integration: end-to-end testing of login, refresh, logout and access control.
+
+-------------- ---------------------------- ---------------------------- ---------------------------- ---------------------------- 
+
+2. Home / Dashboard - Job Description Input & Top Matched Resumes	- Veeran
+
+This module will serve as the primary workspace for recruiters. Users should be able to enter or paste a Job Description, upload or select resumes, and initiate the screening process. The dashboard should display ranked candidates, matching scores, and key screening results. A history sidebar should also be available to display previous screening sessions, provide filtering capabilities, and allow users to quickly reopen past sessions. 
+List of action items:
+- UI for entering or pasting a Job Description.
+- Develop backend APIs for job description submission, screening initiation and results retrieval.
+- Integration of the UI with the backend APIs (loading, error and empty states).
+- UI to showcase the top matching resumes with ranking and matching scores.
+- Matching functionality against the knowledge base stored in Milvus.
+- Backend APIs for session history (list, filter, rename, delete).
+
+-------------- ---------------------------- ---------------------------- ---------------------------- ---------------------------- 
+
+3. Resume Matching Engine - Knowledge Base	- Vinay
+
+This module will contain the core screening logic of the application. It will analyze job descriptions and resumes, identify relevant skills and keywords, calculate matching scores, and rank candidates according to their suitability for the role. The matching process should provide recruiters with an easy way to identify the strongest candidates for further evaluation.
+
+List of action items:
+- Create the knowledge base for resumes.
+- Define the Milvus architecture (collections, schema, indexes, deployment).
+- Vectorize (embed) the PDF documents.
+- Parse resumes and store the required data (skills, experience, metadata) alongside the vectors.
+- Analyze job descriptions and extract skills and keywords.
+- Implement similarity search, matching score calculation and candidate ranking.
+- Expose the matching engine through backend APIs.
+- Validate matching quality and tune the scoring.
+
+-------------- ---------------------------- ---------------------------- ---------------------------- ---------------------------- 
+
+ 4. Milvus Vector Search	- Abhyuday
+- Analyse job descriptions and extract skills and keywords.
+- Implement similarity search, matching score calculation and candidate ranking.
+- Expose the matching engine through backend APIs.
+- Validate matching quality and tune the scoring.
+
+
+5. Resume Viewer - PDF Rendering & Reader Actions	- Manoj
+
+This module will allow recruiters to view candidate resumes directly within the application without downloading files. The viewer should support PDF rendering along with features such as zooming, page navigation, document rotation, and fit-to-screen viewing. The objective is to make resume review seamless and efficient while keeping users within the application workflow.
+
+List of action items:
+- Integrate a UI library for PDF rendering.
+- Customize the viewer to open resumes selected from the top matched resumes.
+- Implement PDF reader actions: zoom, page navigation, rotation and fit-to-screen.
+- Backend API to serve resume files securely, with an authorization check per resume.
+- Handle loading and error states for unavailable or malformed files.
+
+-------------- ---------------------------- ---------------------------- ---------------------------- ---------------------------- 
+
+5. Interview Question Generation & Chatbot - LLM, Chat & Feedback -> Phase 2
+
+This module will help recruiters evaluate shortlisted candidates. It should generate interview questions categorized into Low, Medium, and High difficulty levels based on the candidate profile and job requirements. The module should also support collecting recruiter feedback on generated content and candidate assessments, enabling a more structured and consistent interview process.
+
+List of action items:
+- LLM capabilities: prompt design and integration for generating Low, Medium and High difficulty questions from the candidate profile and job requirements.
+- Chatbot creation: chat UI and backend for recruiter conversations about candidates.
+- Feedback: collect recruiter feedback on generated questions, chatbot responses and candidate assessments.
+- Backend APIs for question generation, chat and feedback storage.
+- Guardrails for LLM output, including validation and handling of unsafe or irrelevant responses.
