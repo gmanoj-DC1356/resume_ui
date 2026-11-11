@@ -3,12 +3,12 @@ import { apiClient } from '@/api/axiosClient';
 const PDF_MIME_TYPE = 'application/pdf';
 const RESUME_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
 
-// GET /api/resumes/{resumeId}/pdf — streams the stored resume for in-app reading.
+// GET /api/v1/resumes/{resumeId}/pdf/ — streams the stored resume for in-app reading.
 export async function fetchResumePdf(resumeId: string): Promise<Blob> {
   if (!RESUME_ID_PATTERN.test(resumeId)) {
     throw new TypeError('Invalid resume id');
   }
-  const { data } = await apiClient.get<Blob>(`/resumes/${encodeURIComponent(resumeId)}/pdf`, {
+  const { data } = await apiClient.get<Blob>(`/v1/resumes/${encodeURIComponent(resumeId)}/pdf/`, {
     responseType: 'blob',
     headers: { Accept: PDF_MIME_TYPE },
   });
